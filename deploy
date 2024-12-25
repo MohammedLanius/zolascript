@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# بناء المشروع
+echo "يُبنى المشروع..."
+zola build
+
+
+cd public
+git add .
+
+
+if [ -z "$1" ]; then
+    echo "ما وجدنا رسالتك!"
+    git commit -m "لا تعليق"
+else
+    git commit -m "$1"
+fi
+
+echo "رفع التغيرات للفرع الرئيسي"
+git push -u origin main
+
+echo "انتُشرت"
+
